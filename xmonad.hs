@@ -19,10 +19,14 @@ import XMonad.Util.Run (spawnPipe)
 import qualified Data.Map as M
 import System.Environment (getEnvironment)
 import XMonad.Util.EZConfig
+import XMonad.Hooks.SetWMName
+import XMonad.Hooks.ManageHelpers
+import qualified XMonad.StackSet as W
 
 mateConfig = desktopConfig
     { terminal = "mate-terminal"
     , keys     = mateKeys <+> keys desktopConfig
+    , startupHook = setWMName "LG3D"
     }
 
 mateKeys (XConfig {modMask = modm}) = M.fromList $
@@ -47,6 +51,7 @@ main = do
                 { modMask = mod4Mask
                  , borderWidth = 2
                  , focusedBorderColor = "#7FBC71"
+                 , manageHook = isFullscreen --> myDoFullFloat
                 } `additionalKeysP` myKeys
 
 myKeys = [  (("M4-f"), spawn "firefox")
@@ -54,3 +59,6 @@ myKeys = [  (("M4-f"), spawn "firefox")
            ,(("M4-i"), spawn "pidgin")
            ,(("M4-z"), kill)
          ]
+
+myDoFullFloat :: ManageHook
+myDoFullFloat = doF W.focusDown <+> doFullFloat
