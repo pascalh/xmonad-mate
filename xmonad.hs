@@ -27,6 +27,7 @@ mateConfig = desktopConfig
     { terminal = "mate-terminal"
     , keys     = mateKeys <+> keys desktopConfig
     , startupHook = setWMName "LG3D"
+    , focusFollowsMouse = False
     }
 
 mateKeys (XConfig {modMask = modm}) = M.fromList $
@@ -51,7 +52,6 @@ main = do
                 { modMask = mod4Mask
                  , borderWidth = 2
                  , focusedBorderColor = "#7FBC71"
-                 , manageHook = isFullscreen --> myDoFullFloat
                 } `additionalKeysP` myKeys
 
 myKeys = [  (("M4-f"), spawn "firefox")
