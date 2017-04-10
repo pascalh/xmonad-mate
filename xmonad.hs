@@ -55,8 +55,6 @@ main = do
                 } `additionalKeysP` myKeys
 
 myKeys = [  (("M4-f"), spawn "firefox")
-           ,(("M4-e"), spawn "gvim")
-           ,(("M4-i"), spawn "pidgin")
            ,(("M4-z"), kill)
          ]
 
