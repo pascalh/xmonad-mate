@@ -21,6 +21,7 @@ import System.Environment (getEnvironment)
 import XMonad.Util.EZConfig
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.EwmhDesktops(fullscreenEventHook)
 import qualified XMonad.StackSet as W
 
 mateConfig = desktopConfig
@@ -28,6 +29,7 @@ mateConfig = desktopConfig
     , keys     = mateKeys <+> keys desktopConfig
     , startupHook = setWMName "LG3D"
     , focusFollowsMouse = False
+    , handleEventHook = fullscreenEventHook
     }
 
 mateKeys (XConfig {modMask = modm}) = M.fromList $
